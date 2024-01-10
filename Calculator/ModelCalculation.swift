@@ -65,7 +65,7 @@ struct ModelCalculator{
     private var globalValue : Double?
     private var saving: SaveFirstOperandAndOperation?
     
-    mutating func setOperand(_ operand: Double){
+    mutating func setOperand(_ operand: Double) {
         globalValue = operand
     }
     
@@ -108,7 +108,7 @@ private var radStatus:Bool = true
 func fac(a: Double) -> Double {
     let n = a
     if(n == 1 || n == 0){
-      return 1
+        return 1
     }
     return n*fac(a: n-1)
 }

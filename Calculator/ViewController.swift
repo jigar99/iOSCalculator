@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var secondMode: UIButton!
     @IBOutlet var twoInX: UIButton!
@@ -49,6 +49,7 @@ class ViewController: UIViewController {
         calculatorModel.setOperand(displayValue)
         calculatorModel.performOperation(sender.currentTitle!)
         displayValue = calculatorModel.result!
+        
         if(sender.currentTitle! == "Rad" || sender.currentTitle! == "Deg"){
             if(count%2 == 0){
                 radBut.setTitle("Deg", for: .normal)
@@ -59,6 +60,7 @@ class ViewController: UIViewController {
                 count = count + 1
             }
         }
+        
         secondMode.addTarget(self, action: #selector(secondClicked), for: .touchUpInside)
         
         typing = false
@@ -68,7 +70,7 @@ class ViewController: UIViewController {
         label.text = "0"
         typing = false
     }
-
+    
     
     @IBAction func point(_ sender: Any) {
         
@@ -76,7 +78,7 @@ class ViewController: UIViewController {
             label.text = label.text! + "."
         }
     }
-   
+    
     @IBAction func ee(_ sender: UIButton) {
         
         if(sender.currentTitle != "EE"){
@@ -91,9 +93,11 @@ class ViewController: UIViewController {
     var displayValue: Double{
         
         get{
+            print(label.text)
             return Double(label.text!)!
         }
         set{
+            print(newValue)
             if newValue%1==0 {
                 label.text = String(newValue).replacingOccurrences(of: ".0", with: "", options: NSString.CompareOptions.literal, range: nil)
             }
@@ -106,7 +110,8 @@ class ViewController: UIViewController {
     
     @objc func secondClicked(_ sender: UIButton){
         
-        if(count2%2 == 0) {
+        print("ok")
+        if (count2%2 == 0) {
             yinx.setTitle("y^x", for: .normal)
             twoInX.setTitle("2^x", for: .normal)
             logy.setTitle("logy", for: .normal)
@@ -119,7 +124,7 @@ class ViewController: UIViewController {
             tanhMinus.setTitle("tanh^(-1)", for: .normal)
             count2 = count2 + 1
         } else {
-            radBut.setTitle("e^x", for: .normal)
+            yinx.setTitle("e^x", for: .normal)
             twoInX.setTitle("10^x", for: .normal)
             logy.setTitle("ln", for: .normal)
             log2.setTitle("log10", for: .normal)
